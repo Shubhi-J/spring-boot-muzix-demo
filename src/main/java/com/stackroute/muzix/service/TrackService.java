@@ -1,6 +1,8 @@
 package com.stackroute.muzix.service;
 
 import com.stackroute.muzix.domain.Track;
+import com.stackroute.muzix.exception.TrackAlreadyExistException;
+import com.stackroute.muzix.exception.TrackNotFoundExeption;
 
 import java.util.List;
 
@@ -8,10 +10,13 @@ import java.util.List;
 public interface TrackService {
 
     // method to save tracks
-    public Track saveTrack(Track track);
+    public Track saveTrack (Track track) throws TrackAlreadyExistException;
+
+    // method to update a track
+    public Track updateTrack(Track track);
 
     // method to get tracks by id
-    public Track getTrackById(int id);
+    public Track getTrackById(int id) throws TrackNotFoundExeption;
 
     // method to get all tracks
     public List<Track> getAllTracks();

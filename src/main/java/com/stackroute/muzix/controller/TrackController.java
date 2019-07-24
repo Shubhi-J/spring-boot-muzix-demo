@@ -1,6 +1,8 @@
 package com.stackroute.muzix.controller;
 
 import com.stackroute.muzix.domain.Track;
+import com.stackroute.muzix.exception.TrackAlreadyExistException;
+import com.stackroute.muzix.exception.TrackNotFoundExeption;
 import com.stackroute.muzix.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,10 +33,10 @@ public class TrackController {
           // save track
           trackService.saveTrack(track);
           responseEntity=new ResponseEntity<String>("Successfully saved", HttpStatus.CREATED);
-      } catch (Exception e){
-          responseEntity=new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+      } catch (TrackAlreadyExistException ex){
+          responseEntity=new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
       }
-        // return success message
+        // return result
         return responseEntity;
     }
 
@@ -48,8 +50,15 @@ public class TrackController {
     // method to get a specific track with endpoint track/{id}
     @GetMapping("/track/{id}")
     public ResponseEntity<?> getTrackById(@PathVariable int id) {
+        ResponseEntity responseEntity;
         // get track by id
-        return new ResponseEntity<Track>(trackService.getTrackById(id),HttpStatus.OK);
+        try{
+            responseEntity= new ResponseEntity<Track>(trackService.getTrackById(id),HttpStatus.OK);
+            // catch track not found exception
+    } catch (TrackNotFoundExeption ex){
+            responseEntity=new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
+        }
+        return responseEntity;
     }
 
     // method to delete a track with endpoint track/{id}
@@ -64,7 +73,7 @@ public class TrackController {
         ResponseEntity responseEntity;
         try{
             // update track
-            trackService.saveTrack(track);
+            trackService.updateTrack(track);
             responseEntity=new ResponseEntity<String>("Successfully updated", HttpStatus.OK);
         } catch (Exception e){
             responseEntity=new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
