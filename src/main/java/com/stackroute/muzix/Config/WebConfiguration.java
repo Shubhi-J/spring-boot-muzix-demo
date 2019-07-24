@@ -14,7 +14,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import static springfox.documentation.builders.PathSelectors.regex;
 
 @Configuration
-@EnableSwagger2
 public class WebConfiguration {
 
     // bean for h2Servlet registration
@@ -24,14 +23,4 @@ public class WebConfiguration {
     registrationBean.addUrlMappings("/console/*");
     return registrationBean;
 }
-
-    // bean for swagger2 documentation
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select().apis(RequestHandlerSelectors.basePackage("com.stackroute.controller"))
-                .paths(regex("/track.*"))
-                .build();
-    }
-
 }
