@@ -3,9 +3,11 @@ package com.stackroute.muzix.service;
 import com.stackroute.muzix.domain.Track;
 import com.stackroute.muzix.repository.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,5 +61,10 @@ public class TrackServiceImpl implements TrackService {
             //throw new RecordNotFoundException("No employee record exist for given id");
 
         }
+    }
+    // method to search a track by name
+    @Override
+    public Track searchTrackByName(String name) {
+      return trackRepository.searchTrackByName(name);
     }
 }

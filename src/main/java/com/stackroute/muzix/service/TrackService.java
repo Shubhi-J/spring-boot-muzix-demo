@@ -19,4 +19,6 @@ public interface TrackService {
     // method to delete a track of given id
     public void deleteTrack(int id);
 
+    // method to search a track by name
+    public Track searchTrackByName(String name);
 }

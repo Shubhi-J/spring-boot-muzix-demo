@@ -72,4 +72,11 @@ public class TrackController {
         // return success message
         return responseEntity;
     }
+
+    // method to get a specific track with endpoint trackByName/{name}
+    @GetMapping("/trackByName/{name}")
+    public ResponseEntity<?> searchTrackByName(@PathVariable String name) {
+        // get track by name
+        return new ResponseEntity<Track>(trackService.searchTrackByName(name),HttpStatus.OK);
+    }
 }
