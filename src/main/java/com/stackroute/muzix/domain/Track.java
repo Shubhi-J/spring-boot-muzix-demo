@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Track {
+public class Track { 
 
     // properties of track
     // id is the identity field
