@@ -24,4 +24,4 @@ d. Remove track
 2. App should be responsive to display consistently across multiple device screens.
 3. App should have an intuitive UI that can be operated by novice expert Internet users.
 
-6. Tools and technologies to be used: Spring boot
+6. Tools and technologies to be used: Spring boot and mysql
