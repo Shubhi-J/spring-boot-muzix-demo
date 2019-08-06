@@ -15,7 +15,7 @@ import java.util.List;
 public class TrackController {
 
     // create object of TrackService
-    TrackService trackService;
+    private TrackService trackService;
 
     // parameterised constructor
     @Autowired
