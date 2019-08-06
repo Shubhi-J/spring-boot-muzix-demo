@@ -18,7 +18,7 @@ import java.util.List;
 public class TrackController extends GlobalExceptionHandler {
 
     // create object of TrackService
-    TrackService trackService;
+    private TrackService trackService;
 
     // parameterised constructor
     @Autowired
