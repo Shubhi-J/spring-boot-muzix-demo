@@ -14,7 +14,7 @@ import java.util.Optional;
 public class TrackServiceImpl implements TrackService {
 
     // create object of trackRepository
-    TrackRepository trackRepository;
+    private TrackRepository trackRepository;
 
     // parameterised constructor
     @Autowired
