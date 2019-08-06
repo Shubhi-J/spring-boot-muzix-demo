@@ -25,8 +25,12 @@ public class TrackServiceImpl implements TrackService {
     // method to save tracks
     @Override
     public Track saveTrack(Track track) {
+        try{
         Track track1=trackRepository.save(track);
         return track1;
+        } catch(Exception e){
+        e.printStackTrace();
+        }
     }
 
     // method to get a track by id
