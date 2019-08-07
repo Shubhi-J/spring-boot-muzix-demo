@@ -17,6 +17,8 @@ import java.util.List;
 @RequestMapping("api/v1")
 public class TrackController extends GlobalExceptionHandler {
 
+    // create instance variable of ResponseEntity
+    private ResponseEntity responseEntity;
     // create object of TrackService
     private TrackService trackService;
 
@@ -29,7 +31,6 @@ public class TrackController extends GlobalExceptionHandler {
     // method to save data with endpoint track
     @PostMapping("/track")
     public ResponseEntity<?> saveTrack(@RequestBody Track track) throws TrackAlreadyExistException{
-        ResponseEntity responseEntity;
         try {
             // save track
             trackService.saveTrack(track);
@@ -51,7 +52,6 @@ public class TrackController extends GlobalExceptionHandler {
     // method to get a specific track with endpoint track/{id}
     @GetMapping("/track/{id}")
     public ResponseEntity<?> getTrackById(@PathVariable int id) throws TrackNotFoundException {
-        ResponseEntity responseEntity;
         // get track by id
             responseEntity= new ResponseEntity<Track>(trackService.getTrackById(id),HttpStatus.OK);
         // return response
@@ -67,7 +67,6 @@ public class TrackController extends GlobalExceptionHandler {
     // method to update a track with endpoint track
     @PutMapping("/track")
     public ResponseEntity<?> updateTrack(@RequestBody Track track){
-        ResponseEntity responseEntity;
             // update track
             trackService.updateTrack(track);
             responseEntity=new ResponseEntity<String>("Successfully updated", HttpStatus.OK);
@@ -78,7 +77,6 @@ public class TrackController extends GlobalExceptionHandler {
     // method to get a specific track with endpoint trackByName/{name}
     @GetMapping("/trackByName/{name}")
     public ResponseEntity<?> searchTrackByName(@PathVariable String name) {
-        ResponseEntity responseEntity;
         // get track by name
         responseEntity= new ResponseEntity<Track>(trackService.searchTrackByName(name),HttpStatus.OK);
     return responseEntity;
@@ -87,7 +85,6 @@ public class TrackController extends GlobalExceptionHandler {
     // method to get a specific track with endpoint trackByName/{name}
     @GetMapping("/topTrack")
     public ResponseEntity<?> getTopTracks() {
-        ResponseEntity responseEntity;
         // get track by name
         return new ResponseEntity<List<Track>>(trackService.getTopTracks(),HttpStatus.OK);
        // return responseEntity;
