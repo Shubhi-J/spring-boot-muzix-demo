@@ -25,12 +25,13 @@ public class TrackServiceImpl implements TrackService {
     // method to save tracks
     @Override
     public Track saveTrack(Track track) {
+        Track track1=null;
         try{
-        Track track1=trackRepository.save(track);
-        return track1;
-        } catch(Exception e){
-        e.printStackTrace();
+            track1=trackRepository.save(track);
+         } catch(Exception e){
+            e.printStackTrace();
         }
+        return track1;
     }
 
     // method to get a track by id
@@ -54,14 +55,16 @@ public class TrackServiceImpl implements TrackService {
     }
 
     // method to delete a track
-    @Override
-    public void deleteTrack(int id) {
+       @Override
+    public Track deleteTrack(int id) {
         Optional<Track> track = trackRepository.findById(id);
+        // check if data is present in database
         if(track.isPresent()) {
+            // if data is present, delete the record of given id
             trackRepository.deleteById(id);
+            return track.get();
         } else {
-            //throw new RecordNotFoundException("No employee record exist for given id");
-
+            return null;
         }
     }
 }
