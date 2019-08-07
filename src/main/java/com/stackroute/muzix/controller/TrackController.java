@@ -56,7 +56,7 @@ public class TrackController {
 
     // method to delete a track with endpoint track/{id}
     @DeleteMapping("/track/{id}")
-    public void deleteTrack(@PathVariable int id) {
+    public Track deleteTrack(@PathVariable int id) {
         return trackService.deleteTrack(id);
     }
 
