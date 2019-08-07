@@ -17,6 +17,6 @@ public interface TrackService {
     public List<Track> getAllTracks();
 
     // method to delete a track of given id
-    public void deleteTrack(int id);
+    public Track deleteTrack(int id);
 
 }
