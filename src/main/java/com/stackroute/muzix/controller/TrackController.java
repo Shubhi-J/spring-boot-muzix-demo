@@ -17,6 +17,8 @@ import java.util.List;
 @RequestMapping("api/v1")
 public class TrackController extends GlobalExceptionHandler {
 
+    // create instance variable of ResponseEntity
+    private ResponseEntity responseEntity;
     // create object of TrackService
     private TrackService trackService;
 
@@ -29,14 +31,9 @@ public class TrackController extends GlobalExceptionHandler {
     // method to save data with endpoint track
     @PostMapping("/track")
     public ResponseEntity<?> saveTrack(@RequestBody Track track) throws TrackAlreadyExistException{
-        ResponseEntity responseEntity;
-    //  try{
           // save track
           trackService.saveTrack(track);
           responseEntity=new ResponseEntity<String>("Successfully saved", HttpStatus.CREATED);
-      //} catch (TrackAlreadyExistException ex){
-       //   responseEntity=new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
-     // }
         // return result
         return responseEntity;
     }
@@ -51,14 +48,9 @@ public class TrackController extends GlobalExceptionHandler {
     // method to get a specific track with endpoint track/{id}
     @GetMapping("/track/{id}")
     public ResponseEntity<?> getTrackById(@PathVariable int id) throws TrackNotFoundExeption {
-        ResponseEntity responseEntity;
         // get track by id
-     //   try{
             responseEntity= new ResponseEntity<Track>(trackService.getTrackById(id),HttpStatus.OK);
             // catch track not found exception
-    //} catch (TrackNotFoundExeption ex){
-      //      responseEntity=new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
-        //}
         return responseEntity;
     }
 
@@ -71,14 +63,9 @@ public class TrackController extends GlobalExceptionHandler {
     // method to update a track with endpoint track
     @PutMapping("/track")
     public ResponseEntity<?> updateTrack(@RequestBody Track track){
-        ResponseEntity responseEntity;
-      //  try{
             // update track
             trackService.updateTrack(track);
             responseEntity=new ResponseEntity<String>("Successfully updated", HttpStatus.OK);
-       // } catch (Exception e){
-         //   responseEntity=new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
-       // }
         // return success message
         return responseEntity;
     }
@@ -86,7 +73,6 @@ public class TrackController extends GlobalExceptionHandler {
     // method to get a specific track with endpoint trackByName/{name}
     @GetMapping("/trackByName/{name}")
     public ResponseEntity<?> searchTrackByName(@PathVariable String name) {
-        ResponseEntity responseEntity;
         // get track by name
         responseEntity= new ResponseEntity<Track>(trackService.searchTrackByName(name),HttpStatus.OK);
     return responseEntity;
