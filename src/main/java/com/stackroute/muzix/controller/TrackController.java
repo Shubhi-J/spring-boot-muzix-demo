@@ -16,6 +16,9 @@ import java.util.List;
 @RequestMapping("api/v1")
 public class TrackController {
 
+    // create instance variable of ResponseEntity
+    private ResponseEntity responseEntity;
+    
     // create object of TrackService
     private TrackService trackService;
 
@@ -28,7 +31,6 @@ public class TrackController {
     // method to save data with endpoint track
     @PostMapping("/track")
     public ResponseEntity<?> saveTrack(@RequestBody Track track){
-        ResponseEntity responseEntity;
       try{
           // save track
           trackService.saveTrack(track);
@@ -50,7 +52,6 @@ public class TrackController {
     // method to get a specific track with endpoint track/{id}
     @GetMapping("/track/{id}")
     public ResponseEntity<?> getTrackById(@PathVariable int id) {
-        ResponseEntity responseEntity;
         // get track by id
         try{
             responseEntity= new ResponseEntity<Track>(trackService.getTrackById(id),HttpStatus.OK);
@@ -70,7 +71,6 @@ public class TrackController {
     // method to update a track with endpoint track
     @PutMapping("/track")
     public ResponseEntity<?> updateTrack(@RequestBody Track track){
-        ResponseEntity responseEntity;
         try{
             // update track
             trackService.updateTrack(track);
